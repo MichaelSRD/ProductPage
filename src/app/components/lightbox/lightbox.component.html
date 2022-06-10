@@ -1,0 +1,29 @@
+<div class="lightbox" #lightbox [ngStyle]="{'display': lightcaja2 ? 'flex' : 'none' }" >
+
+
+<div class="slider">
+    
+    <div class="closed" (click)="cambio()">
+                <img src="../../../assets/images/icon-close.svg" alt="closed">
+    </div>
+
+    <div class="previous" (click)="imagenA()">
+        <img src="../../../assets/images/icon-previous.svg" alt="icono de anterior">
+    </div>
+    <div class="imagenes">
+        <img #slider *ngFor="let item of imagenes" src={{item.url}} [ngStyle]="{'margin-left': item.marginleft + '%'}" alt="imagen de producto 1">
+    </div>
+
+    <div class="next" (click)="imagenS()">
+        <img src="../../../assets/images/icon-next.svg" alt="icono de siguiente">
+    </div>
+    <div class="steps">
+        <div class="carousel-step {{position2 === item.id ? 'activado2' : ''}}"  *ngFor="let item of imagenes" (click)="setcurrenposition(item.id)">
+           <img src={{item.thumnail}} alt="">
+        </div>
+        
+     </div>
+</div>
+
+
+</div>

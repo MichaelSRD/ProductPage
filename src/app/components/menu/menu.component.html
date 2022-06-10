@@ -1,0 +1,60 @@
+<header>
+    <div class="container">
+        <div class="nav">
+            <div class="menu">
+                <img src="../../../assets/images/icon-menu.svg" alt="icono de menu" (click)="menu_hidden()" >
+                <div class="nav-bar" #navbar >
+                    <div class="navegacion">
+                        <img src="../../../assets/images/icon-close.svg" alt="icono de una x" (click)="menu_close()">
+                        <a href="#">Collections</a>
+                        <a href="#">Men</a>
+                        <a href="#">Women</a>
+                        <a href="#">About</a>
+                        <a href="#">Contact</a>
+                    </div>
+                    <div class="bg-navbar">
+                        
+                    </div>
+                </div>
+               
+            </div>
+            <div class="logo">
+                <img src="../../../assets/images/logo.svg" alt="logo de la marca">
+            </div>
+            <div class="carrito" (click)="cestaA()">
+                <img src="../../../assets/images/icon-cart.svg" alt="carrito de compra">
+                <div class="cantidad" [ngClass]=" cantidad > 0 ? 'activado':'desactivado'" >
+                    <p>{{cantidad}}</p>
+                </div>
+            </div>
+            <div class="perfil">
+                <img src="../../../assets/images/image-avatar.png" alt="avatar de usuario">
+            </div>
+        </div>
+        <div class="modal-cart" [ngStyle]="{'display': cesta ?'initial':'none'}"  >
+            <div class="title-cart">
+                <p>Cart</p> 
+            </div>
+            <div class="cont-cart" >
+                <div class="product" *ngFor="let item of producinfo; let indice = index ">
+                    <img  class="imgp"  src="../../../assets/images/image-product-1-thumbnail.jpg" alt="image-product-1-thumbnail">
+                    <div class="medio" >
+                        <p class="no.product">{{item.nombre}}
+                        </p>
+                         <div class="preciosCesta">
+                             <p>{{item.p_descuento | currency}} <span>x{{cantidad}}</span> <strong>{{ item.p_descuento * cantidad | currency}}</strong></p>
+                         </div>
+                    </div> 
+                    <div class="icono">
+                        <img src="../../../assets/images/icon-delete.svg" (click)="eliminarP({indice})"  alt="icono eliminar producto">
+                    </div>
+                   
+                </div>
+                <div class="sinproducto" [ngStyle]="{'display': cantidad > 0?'none':'initial'}" >
+                    <p>You cart is empty</p>
+                </div>
+                <button [ngClass]=" cantidad > 0 ? 'activado':'desactivado'" >Checkout</button>
+            </div>
+        </div>
+    </div>
+</header>

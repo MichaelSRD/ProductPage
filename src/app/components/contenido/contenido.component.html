@@ -1,0 +1,53 @@
+<main>
+    <div class="container">
+        <div class="slider">
+            <div class="previous" (click)="imagenA()">
+                <img src="../../../assets/images/icon-previous.svg" alt="icono de anterior">
+            </div>
+            <div class="imagenes" (click)="lightbox()">
+                <img #slider *ngFor="let item of imagenes" src={{item.url}} [ngStyle]="{'margin-left': item.marginleft + '%'}" alt="imagen de producto 1">
+            </div>
+
+            <div class="next" (click)="imagenS()">
+                <img src="../../../assets/images/icon-next.svg" alt="icono de siguiente">
+            </div>
+            <div class="steps">
+                <div class="carousel-step {{position2 === item.id ? 'activado2' : ''}}"  *ngFor="let item of imagenes" (click)="setcurrenposition(item.id)">
+                   <img src={{item.thumnail}} alt="">
+                </div>
+                
+             </div>
+        </div>
+        
+        <section class="info-product" *ngFor="let itemp of producto"  >
+            <section class="titulos">
+                <p>SNEAKER COMPANY</p>
+             <h1>{{itemp.nombre}}</h1>
+             <p>{{itemp.descripcion}}</p>
+            </section>
+            <section class="precios">
+                <div class="precio-descuento">
+                    <p>{{(itemp.p_descuento | currency)}}</p>
+                </div>
+                <div class="porcentaje">
+                     <p>{{itemp.porcentaje }}</p>
+                </div>
+                <div class="precio-total">
+                     <p>{{itemp.p_total | currency }}</p>
+                </div>
+                <div class="aumento">
+                    <img src="../../../assets/images/icon-minus.svg" alt="icono de menos" (click)="minus()" >
+                    <p>{{cantidad}}</p>
+                    <img src="../../../assets/images/icon-plus.svg" alt="icono de mas" (click)="plus()">
+                </div>
+                <button (click)="setCantidadCesta(itemp.id)">
+                    <img src="../../../assets/images/icon-cart.svg" alt="icono de carrito">
+                    <p>Add to cart </p>
+                </button>
+            </section>
+             
+
+        </section>
+        
+    </div>
+</main>

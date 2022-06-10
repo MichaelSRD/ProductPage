@@ -1,0 +1,254 @@
+$breakpoint-xs: 360px;
+$breakpoint-sm: 767px;
+$breakpoint-md: 1023px;
+$breakpoint-lg: 1360px;
+
+@mixin media($media) {
+    @if $media == xs {
+      @media (max-width: $breakpoint-sm) { @content; }
+    }
+    @else if $media == sm {
+      @media (min-width: $breakpoint-sm) and (max-width: $breakpoint-md) { @content; }
+    }
+    @else if $media == md {
+      @media (min-width: $breakpoint-md) { @content; }
+    }
+    @else if $media == lg {
+      @media (min-width: $breakpoint-lg) { @content; }
+    }
+  }
+main{
+    .container{
+        @include media(md){
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            width: 90%;
+            margin: auto;
+            align-items: center;
+            justify-items: center;
+            margin-top: 2rem;
+        }
+        .slider{
+            position: relative;
+            height: 500px;
+            @include media(md){
+                width: 400px;
+                height: auto;
+            }
+            .previous{
+                position: absolute;
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);
+                background: white;
+                border-radius: 43px;
+                width: 45px;
+                height: 45px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-left: 1rem;
+                cursor: pointer;
+                z-index: 1;
+                 img{
+                    margin-right: 4px;
+                 }
+                 @include media(md){
+                    display: none;
+                }
+            }
+            .next{
+                position: absolute;
+                top: 50%;
+                right: 0;
+                transform: translateY(-50%);
+                background: white;
+                border-radius: 43px;
+                width: 45px;
+                height: 45px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 1rem;
+                cursor: pointer;
+                 img{
+                    margin-left: 4px;
+                 }
+                 @include media(md){
+                     display: none;
+                 }
+            }
+            .imagenes{
+                height: 100%;
+                display: flex;
+                overflow: hidden;
+                    position: relative;
+                    min-width: 100%;
+                    left: 0;
+                    @include media(md){
+                        border-radius: 10px;
+                    }
+                img{
+                    width: 100%;
+                    height: 100%;
+                    position: relative;
+                    min-width: 100%;
+                    left: 0;
+                    transition: all 0.5s;
+                    cursor: pointer;
+                    @include media(md){
+                        &:hover{
+                            transform:scale(1.2);
+                         }
+                    }
+                    
+                }
+            }
+        }
+        .steps{
+            display: none;
+            @include media(md) {
+                display: grid;
+                grid-template-columns: repeat(4, min-content);
+                justify-content: space-between;
+                margin-top: 25px;
+              }
+              .carousel-step{
+                  border-radius: 7px;
+                  border-radius: 7px;
+                  height: 74px;
+                  width: 70px;
+                  overflow: hidden;
+              }
+             img{
+                 width: 100%;
+                 height: 100%;
+                 cursor: pointer;
+                 &:hover{
+                     
+                     filter: opacity(0.5) drop-shadow(0 0 0 hsl(219, 18%, 81%));
+                 }
+             }
+             .activado2{
+                border: 3px solid hsl(26, 100%, 55%);
+                 img{
+                    filter: opacity(0.5) drop-shadow(0 0 0 hsl(219, 18%, 81%));
+                 }
+                
+             }
+        }
+        .info-product{
+            padding: 1rem;
+            .titulos{
+                :first-child{
+                    color: hsl(26, 100%, 55%);
+                    margin-bottom: 1rem;
+                    margin-top: 1rem;
+                    font-weight: 700;
+                }
+                h1{
+                    font-weight: 700;
+                    margin-bottom: 1rem;
+                    font-size: 35px;
+                    color: hsl(220, 13%, 13%);
+                    @include media(md){
+                        font-size: 45px;
+                    }
+                }
+                :last-child{
+                    line-height: 27px;
+                    margin-bottom: 1rem;
+                    color: hsl(219, 9%, 45%);
+                }
+            }
+            .precios{
+                display: grid;
+                grid-template-columns: min-content 0fr 1fr;
+                grid-template-rows: 3fr;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                grid-gap: 10px;
+                .porcentaje{
+                    p{
+                        background: hsl(25, 100%, 94%);
+                        width: min-content;
+                        padding: 3px 5px;
+                        border-radius: 5px;
+                    }
+                    text-align: start;
+                    color: hsl(26, 100%, 55%);
+                }
+                .precio-descuento{
+                    font-size: 2.5em;
+                    font-weight: 700;
+                    color: hsl(220, 13%, 13%);;
+                }
+                .precio-total{
+                    text-decoration: line-through;
+                    font-size: 20px;
+                    color: hsl(220, 14%, 75%);
+                    @include media(md){
+                        justify-self: start;
+                        grid-row: 2;
+                    }
+                }
+                button{
+                    grid-column-start: 1;
+                    grid-column-end: 4;
+                    grid-row-start: 3;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 1rem;
+                    background: hsl(26, 100%, 55%);
+                    border-radius: 5px;
+                    border: none;
+                    color: white;
+                    font-size: 20px;
+                    font-weight: 700;
+                    margin-bottom: 2rem;
+                    box-shadow: 0 9px 12px 0px hsl(25, 96%, 65%);
+                    @include media(md){
+                        grid-column: 3/4;
+                        margin-bottom: 0;
+                        grid-row-start: 3;
+                        &:hover{
+                            opacity: 80%;
+                        }
+                    }
+                    cursor: pointer;
+                    img{
+                        margin-right: 1rem;
+                        filter:  brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(170deg) brightness(102%) contrast(102%);
+                    }
+                }
+                .aumento{
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    grid-column-start: 1;
+                    grid-column-end: 4;
+                    justify-items: center;
+                    align-items: center;
+                    
+                    padding: 20px 1rem;
+                      background: hsl(223, 64%, 98%);
+                      margin: 1rem 0;
+                      border-radius: 10px;
+                      @include media(md){
+                          grid-column: 1/3;
+                      }
+                      :first-child{
+                          justify-self: start;
+                          cursor: pointer;
+                      }
+                      :last-child{
+                          justify-self: end;
+                          cursor: pointer;
+                      }
+                }
+                
+            }
+        }
+    }
+}
